@@ -3,7 +3,7 @@
 有部分的还存在问题....没有实现或甚至编译错误
 
 常用的头文件
-```
+```C++
 #include <iostream>
 #include <cstdio>
 //printf()
