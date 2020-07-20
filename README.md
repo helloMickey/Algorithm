@@ -4,6 +4,9 @@
 - nowcoder
 - fudan
 - PAT
+- lc-cn(leetcode-cn) 
+
+easy难度的题目基本直接跳过；
 
 有部分的还存在问题....没有实现或甚至编译错误。
 
