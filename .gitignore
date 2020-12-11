@@ -2,3 +2,5 @@
 .vscode/
 test.cpp
 main.cpp
+*.exe
+.gitignore
