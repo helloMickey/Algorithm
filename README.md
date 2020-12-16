@@ -12,7 +12,7 @@ easy难度的题目基本直接跳过；
 
 
 # 笔记部分
-## C++中常用的头文件
+## C++中常用的头文件库&相应的函数
 ```C++
 #include <iostream>
 #include <cstdio>
@@ -45,3 +45,5 @@ easy难度的题目基本直接跳过；
 #define _MAX 21e+8
 #define _MIN -21e+8
 ```
+
+## 常见的使用错误
