@@ -1,6 +1,6 @@
 /*
-¸´µ©2013Äê»úÊÔµÚÈıÌâ£º
-¡°ÔÚÖÊÊıÃÔ¹¬ÖĞÑ°ÕÒÁ½¸ö·ÇÖÊÊıÖ®¼äµÄ¾àÀë¡±
+å¤æ—¦2013å¹´æœºè¯•ç¬¬ä¸‰é¢˜ï¼š
+â€œåœ¨è´¨æ•°è¿·å®«ä¸­å¯»æ‰¾ä¸¤ä¸ªéè´¨æ•°ä¹‹é—´çš„è·ç¦»â€
 */
 #include<vector>
 #include<iostream>
@@ -11,7 +11,7 @@ const int lowB = 0;
 const int highB = 99;
 const int mazeEdgeSize = 100;//
 const int mazeSize = 10000;//100*100
-const int sX = 50;//Êı×Ö1 µÄÆğµã£»
+const int sX = 50;//æ•°å­—1 çš„èµ·ç‚¹ï¼›
 const int sY = 49;
 struct{
 	int increX;
@@ -21,7 +21,7 @@ struct Point{
 	int x;
 	int y;
 };
-vector<int> getPrimeNumber(){//»ñÈ¡1-10000Ö®¼äµÄËùÓĞÖÊÊı
+vector<int> getPrimeNumber(){//è·å–1-10000ä¹‹é—´çš„æ‰€æœ‰è´¨æ•°
 	vector<int> result;
 	bool IisPrimeNum[ mazeSize + 1 ]={};
 	for(int i = 0; i <= mazeSize; i++)
@@ -44,8 +44,8 @@ vector<int> getPrimeNumber(){//»ñÈ¡1-10000Ö®¼äµÄËùÓĞÖÊÊı
 void constructMaze()
 {
 
-	//¹¹ÔìÆ«ÒÆÁ¿Êı×é
-	//Êı×Ö1 µÄÎ»ÖÃ£¨50£¬ 49£©//°´¡ú¡ü¡û¡ı·½ÏòÑ­»·£¬²½³¤ÒÀ´ÎÎª1£¬1£¬2£¬2£¬3£¬3£¬4£¬4£¬5£¬5¡£¡£¡£
+	//æ„é€ åç§»é‡æ•°ç»„
+	//æ•°å­—1 çš„ä½ç½®ï¼ˆ50ï¼Œ 49ï¼‰//æŒ‰â†’â†‘â†â†“æ–¹å‘å¾ªç¯ï¼Œæ­¥é•¿ä¾æ¬¡ä¸º1ï¼Œ1ï¼Œ2ï¼Œ2ï¼Œ3ï¼Œ3ï¼Œ4ï¼Œ4ï¼Œ5ï¼Œ5ã€‚ã€‚ã€‚
 	incre[0].increX = 0;incre[0].increY = 0; incre[1].increX = 0;incre[1].increY = 0;
 	int delta = 0; int derict = 0;
 	for(int i = 2; i <= mazeSize; i++){
@@ -67,29 +67,29 @@ void constructMaze()
 		derict++;
 	}
 
-	//¹¹ÔìÃÔ¹¬
+	//æ„é€ è¿·å®«
 	vector<vector<int>> primeNumMaze(mazeEdgeSize, vector<int>(mazeEdgeSize));
 	vector<int> primeNumList = getPrimeNumber();
 
-	primeNumMaze[sX][sY] = 0;//¸³Öµ0±íÊ¾²»ÊÇÖÊÊı
+	primeNumMaze[sX][sY] = 0;//èµ‹å€¼0è¡¨ç¤ºä¸æ˜¯è´¨æ•°
 	int count = 2;int curX = sX, curY = sY;
 	for(int i = 0; i < primeNumList.size(); i++)
 	{
 		while (count != primeNumList[i])
-		{//¼ÌĞøÍùÇ°×ß
+		{//ç»§ç»­å¾€å‰èµ°
 			int x = curX + incre[count].increX,
 				y = curY + incre[count].increY;
 			primeNumMaze[x][y] = 0;
 			count++;
 		}
-		primeNumMaze[curX][curY] = count; //µ±Ç°countÊÇÖÊÊı
+		primeNumMaze[curX][curY] = count; //å½“å‰countæ˜¯è´¨æ•°
 	}
 
 }
-//¹ã¶ÈÓÅÏÈ±éÀú
+//å¹¿åº¦ä¼˜å…ˆéå†
 void BFS(vector<vector<int>> maze, int sX,int sY, int end)
 {
-	vector<vector<bool>> visit;//±ê¼ÇÊÇ·ñ·ÃÎÊ¹ı
+	vector<vector<bool>> visit;//æ ‡è®°æ˜¯å¦è®¿é—®è¿‡
 	queue<Point> q;
 	int curX = sX, curY = sY;
 	Point start; 

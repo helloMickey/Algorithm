@@ -1,8 +1,8 @@
 /*
-1. ÊäÈë3¸ö×Ó´®£¬ Êä³öÕâ3¸ö×Ó´®µÄ×î´ó¹«¹²×Ó´® ¡£
-2. ÊäÈëÊ÷µÄÖĞĞòºÍºóĞòÅÅÁĞ£¬Êä³öÊ÷µÄ²ã´Î±éÀú¡£ÉÏ»úÒªÇóºÍÆÀ·Ö¹æÔò£º
-µÚÒ»Ìâ¡¢ºÚºĞ²âÊÔ£¬Ö»ÒªÇó³ÌĞò°´¸ñÊ½Êä³ö½á¹ûÕıÈ·¡£
-µÚ¶şÌâ¡¢°´ÕÕË¼Â·£¬¹æ·¶±à³Ì£¬´úÂëÈı·½Ãæ×ÛºÏ¿¼ÂÇµÃ·Ö¡£
+1. è¾“å…¥3ä¸ªå­ä¸²ï¼Œ è¾“å‡ºè¿™3ä¸ªå­ä¸²çš„æœ€å¤§å…¬å…±å­ä¸² ã€‚
+2. è¾“å…¥æ ‘çš„ä¸­åºå’Œååºæ’åˆ—ï¼Œè¾“å‡ºæ ‘çš„å±‚æ¬¡éå†ã€‚ä¸Šæœºè¦æ±‚å’Œè¯„åˆ†è§„åˆ™ï¼š
+ç¬¬ä¸€é¢˜ã€é»‘ç›’æµ‹è¯•ï¼Œåªè¦æ±‚ç¨‹åºæŒ‰æ ¼å¼è¾“å‡ºç»“æœæ­£ç¡®ã€‚
+ç¬¬äºŒé¢˜ã€æŒ‰ç…§æ€è·¯ï¼Œè§„èŒƒç¼–ç¨‹ï¼Œä»£ç ä¸‰æ–¹é¢ç»¼åˆè€ƒè™‘å¾—åˆ†ã€‚
 */
 #include <iostream>
 #include <vector>
@@ -10,12 +10,12 @@
 #include <string>
 using namespace std;
 
-//¶¯Ì¬¹æ»®Çó½âÁ©¸ö×Ö·û´®µÄ×Ó´®
+//åŠ¨æ€è§„åˆ’æ±‚è§£ä¿©ä¸ªå­—ç¬¦ä¸²çš„å­ä¸²
 map<string, int> findSubstr(string a, string b){
 	map<string, int> result;
 	int a_l = a.length(), b_l = b.length();
-	vector<vector<bool>> anb(b_l, vector<bool>(a_l));//¶şÎ¬Êı×é´óĞ¡Îª b_l * a_l,ÊÓ×÷b_lĞĞ£¬a_lÁĞ
-	//¶¯Ì¬¹æ»®
+	vector<vector<bool>> anb(b_l, vector<bool>(a_l));//äºŒç»´æ•°ç»„å¤§å°ä¸º b_l * a_l,è§†ä½œb_lè¡Œï¼Œa_låˆ—
+	//åŠ¨æ€è§„åˆ’
 	for(int i = 0; i < b_l ; i++)
 	{
 		for(int j = 0; j < a_l; j++)
@@ -26,7 +26,7 @@ map<string, int> findSubstr(string a, string b){
 				anb[i][j] = false;
 		}
 	}
-	//¼ÆËãaºÍbÖĞµÄËùÓĞ×Ö´®
+	//è®¡ç®—aå’Œbä¸­çš„æ‰€æœ‰å­—ä¸²
 	for(int i = 0; i < b_l; i++)
 	{
 		for(int j = 0; j < a_l; j++)
@@ -40,7 +40,7 @@ map<string, int> findSubstr(string a, string b){
 					if(true != anb[iTemp][jTemp])
 						break;
 					substr += a[jTemp];
-					result.insert(pair<string, int>(substr, 1));//µÚÒ»´Î²åÈëµ¥¸ö×Ö·û£¬Ö®ºóÔÙÀÛ¼Ó
+					result.insert(pair<string, int>(substr, 1));//ç¬¬ä¸€æ¬¡æ’å…¥å•ä¸ªå­—ç¬¦ï¼Œä¹‹åå†ç´¯åŠ 
 					iTemp++; jTemp++;
 				}
 			}
@@ -61,7 +61,7 @@ void function(){
 	map<string, int>::iterator it = anb.begin();
 	while(it != anb.end())
 	{
-		if(anc.find(it->first) != anc.end())//ÏàÍ¬µÄ×Ö´®
+		if(anc.find(it->first) != anc.end())//ç›¸åŒçš„å­—ä¸²
 			substrList.insert(pair<string, int>(it->first, it->first.length()));
 		it++;
 	}

@@ -39,6 +39,7 @@ easy难度的题目基本直接跳过；
 //make_heap(vector.begin(), vector.end()), pop_heap(..., ...);
 #include <string>
 //find(), string::npos; substr(int a, int b);
+// 字符串按照空格划分
 #include <cstring>
 // strtok();
 

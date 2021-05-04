@@ -14,7 +14,7 @@ void fnu2018(){
 	string e;
 	cin >> e;
 	string left, right;
-	//e.replace(' ', "");//È¥³ı¿Õ¸ñ
+	//e.replace(' ', "");//å»é™¤ç©ºæ ¼
 	//getline(cin, e);
 	//e.erase(0,e.find_first_not_of(" "));
 	//e.erase(e.find_last_not_of(" ") + 1);
@@ -35,52 +35,52 @@ void fnu2018(){
 		item_r.push_back(sub_str);
 		sub_str = strtok(NULL, "+-");
 	}
-	//´¦ÀíµÈºÅ×ó±ß
+	//å¤„ç†ç­‰å·å·¦è¾¹
 	for(int i = 0; i < item_l.size(); i++)
 	{
 		string sub_item = item_l[i];
 		int pos = left.find(sub_item);
 
 		int isPositive = 1;
-		//ÏÈÅĞ¶ÏÕı¸º
+		//å…ˆåˆ¤æ–­æ­£è´Ÿ
 		if(left.find("+" + sub_item) != -1)
 			isPositive = 1;
 		else if(left.find("-" + sub_item ) != -1 )
 			isPositive = -1;
 		else if(left.find(sub_item ) != -1 )
-			isPositive = 1;//ÔÚ¿ªÍ·Î»ÖÃÄØ
+			isPositive = 1;//åœ¨å¼€å¤´ä½ç½®å‘¢
 
-		if(sub_item.find("x") != -1){//º¬xÏî
+		if(sub_item.find("x") != -1){//å«xé¡¹
 			string temp = sub_item.substr(0, sub_item.find("x"));
 			if(temp == "")
 				temp = "1";
 			a_x += isPositive * atoi(temp.c_str());
-		}else{//²»º¬x
+		}else{//ä¸å«x
 			a_c += isPositive * atoi(sub_item.c_str());
 		}
 
 	}
-	//´¦ÀíµÈºÅÓÒ±ß
+	//å¤„ç†ç­‰å·å³è¾¹
 	for(int i = 0; i < item_r.size(); i++)
 	{
 		string sub_item = item_r[i];
 		int pos = right.find(sub_item);
 
 		int isPositive = 1;
-		//ÏÈÅĞ¶ÏÕı¸º
+		//å…ˆåˆ¤æ–­æ­£è´Ÿ
 		if(right.find("+" + sub_item) != -1)
 			isPositive = 1;
 		else if(right.find("-" + sub_item ) != -1 )
 			isPositive = -1; 
 		else if(right.find(sub_item ) != -1 )
-			isPositive = 1;//ÔÚ¿ªÍ·
+			isPositive = 1;//åœ¨å¼€å¤´
 
-		if(sub_item.find("x") != -1){//º¬xÏî
+		if(sub_item.find("x") != -1){//å«xé¡¹
 			string temp = sub_item.substr(0, sub_item.find("x"));
 			if(temp == "")
 				temp = "1";
 			a_x += -1 * isPositive * atoi(temp.c_str());
-		}else{//²»º¬x
+		}else{//ä¸å«x
 			a_c += -1 * isPositive * atoi(sub_item.c_str());
 		}
 	}
