@@ -28,6 +28,9 @@ easy难度的题目基本直接跳过；
 ```C++
 #include <cmath>
 // absf(); asin(); sin();
+// fill(); max(); min(); abs();
+
+
 #include <algorithm>
 
 排序：
@@ -36,6 +39,7 @@ bool myfunction (int i,int j) { return (i < j); }
 sort(myvector.begin(), myvector.end(), compFunc); // 升序排序
 
 容器搜索：
+获取容器中最大值最小值：
 /**
 template <class ForwardIterator>
 ForwardIterator max_element (ForwardIterator first, ForwardIterator last);
@@ -46,9 +50,14 @@ ForwardIterator max_element (ForwardIterator first, ForwardIterator last,
  * **/
 *std::min_element(myints,myints+7); // 最小值
 max_element()
+自定义比较函数：
 
-// reverse(); fill(); max(); min(); abs();
+
+// reverse(); 
 //make_heap(vector.begin(), vector.end()), pop_heap(..., ...);
+
+其他常用：
+std::accmulate(wall[0].begin(), wall[0].end(), 0); // 累加函数
 ```
 
 ### STL
