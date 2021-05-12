@@ -116,7 +116,8 @@ count() //
 
 ```
 
-#### 其他
+### 其他
+#### 字符串
 ```C++
 // http://c.biancheng.net/view/400.html
 #include <string>
@@ -129,6 +130,10 @@ replace() // 替换
 string 类有一些查找子串和字符的成员函数，它们的返回值都是子串或字符在 string 对象字符串中的位置（即下标）。如果查不到，则返回 string::npos。
 // 字符串按照空格划分
 
+其他数值类型 <=>字符串
+std::to_string() // C++11中新增的函数，将整数、浮点数转化为 string 对象
+std::atoi(const char* str); // string::c_str() 将 string 类型转化为 C 风格的 char*
+// atol() atof() strtol()
 
 #include <cstring>
 // strtok();
