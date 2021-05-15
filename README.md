@@ -62,6 +62,12 @@ std::accmulate(wall[0].begin(), wall[0].end(), 0); // 累加函数
 
 ### STL
 #### 有序容器
+在STL中，一般而言：
+- empty() 函数用于判断当前容器中是否为空, clear()一般用于清空容器中的内容
+- size()
+- 查询函数的返回结果为迭代器类型，如果未查询到则对应end位置的迭代器。如果想要获取到迭代器对应元素的下标，在 It - begin()
+- std::find()
+
 ```C++
 // https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html
 #include <vector>
@@ -86,13 +92,25 @@ find() // 函数范围值为迭代器类型，如果没有查询到相关元素�
 
 #include <list>
 //list<int>
+
 #include <queue>
-//queue<int>; deque<int>
+常用方法：
+增： push()
+删： pop()
+查： front(), back(), size(), empty()
+
+#include <deque>
+deque更为实用一点, 相比 queue 其支持迭代器
+增：push_back(), push_front(), insert()
+删：pop_back(), pop_front() // 注意 pop_ 函数的返回值为空，通过 front() 来获取
+查：operator[], at(), front(), back()
+
 #include <stack>
 // stack<int>
+push()
+top(), pop()
 
 ```
-
 #### 无序容器
 ```C++
 集合：
@@ -144,3 +162,4 @@ std::atoi(const char* str); // string::c_str() 将 string 类型转化为 C 风�
 
 ## 常见的使用错误
 - C++11 中增添了foreach的特性，注意要对遍历元素的值进行修改需要是对元素的引用或者指针。
+- STL deque容器中的 pop_front() pop_back() 范围值为void, 通过 front() 和 back() 来访问值
