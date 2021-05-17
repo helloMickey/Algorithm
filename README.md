@@ -163,3 +163,4 @@ std::atoi(const char* str); // string::c_str() 将 string 类型转化为 C 风�
 ## 常见的使用错误
 - C++11 中增添了foreach的特性，注意要对遍历元素的值进行修改需要是对元素的引用或者指针。
 - STL deque容器中的 pop_front() pop_back() 范围值为void, 通过 front() 和 back() 来访问值
+- 声明多个相同类型的指针时，正确的声明方式是：`TreeNode *p_x, *p_y;` 而不是 `TreeNode* p_x, p_y ;` !!!! 
