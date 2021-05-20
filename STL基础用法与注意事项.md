@@ -131,17 +131,44 @@ count() //
 
 ### 其他
 #### 字符串
+在C++ <string> 类库中，一般与位置相关的函数的参数或返回值类型是 size_t 类型，指明所处 string 中的位置。
 ```C++
 // http://c.biancheng.net/view/400.html
 #include <string>
 初始化：
+
 常用方法：
 size()
-find(), string::npos; 
-substr(int a, int b); // 字符串截取
-replace() // 替换
+find(" ", start_pos), // string::npos; 
 string 类有一些查找子串和字符的成员函数，它们的返回值都是子串或字符在 string 对象字符串中的位置（即下标）。如果查不到，则返回 string::npos。
-// 字符串按照空格划分
+substr(int a, int b); // 字符串截取
+replace(size_t pos, size_t len ...) // 替换
+erase() // Erases part of the string
+
+剔除字符串中的空格
+    auto p = str.find(' ');
+    while(p != string::npos){
+        str.replace(p, 1, "");
+        p = str.find(' ');
+    }
+
+字符串按照空格划分
+    vector<string> sub_strs;
+	int start_p = 0;
+	int end_p = str.find(' ', 0);
+	while (end_p != string::npos) {
+		string sub_str(str, p, end_p - start_p + 1); // pos, len
+		if(sub_str != " ") sub_strs.push_back(sub_str);
+		start_p = end_p + 1; // 新的起点
+		end_p = str.find(' ', start_p);
+	}
+字符串按照空格划分——2
+    string str;
+    istringstream strcin(str);
+    string s;
+    vector<string> vs;
+    while(strcin >> s) vs.push_back(s);
+
 
 其他数值类型 <=>字符串
 std::to_string() // C++11中新增的函数，将整数、浮点数转化为 string 对象
