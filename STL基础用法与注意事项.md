@@ -3,10 +3,21 @@
 ## STL
 ### 有序容器
 在STL中，一般而言：
-- empty() 函数用于判断当前容器中是否为空, clear()一般用于清空容器中的内容
-- size()
+- empty() 函数用于判断当前容器中是否为空, clear()一般用于清空容器中的内容。size()获取容器的当前元素个数。
 - 查询函数的返回结果为迭代器类型，如果未查询到则对应end位置的迭代器。如果想要获取到迭代器对应元素的下标，在 It - begin()
-- std::find()
+- find() 一般返回结果是迭代器类型，如果没有查询到元素，则返回 container.end()， 注意 string 中的find返回的是下标。
+- `swap()` 机制 
+  ```C++
+    template <class T> void swap (T& a, T& b)
+    {
+        T c(std::move(a)); a=std::move(b); b=std::move(c);
+    }
+
+    template <class T, size_t N> void swap (T &a[N], T &b[N])
+    {
+        for (size_t i = 0; i<N; ++i) swap (a[i],b[i]);
+    }
+  ```
 
 ```C++
 // https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html
@@ -69,9 +80,12 @@ top(), pop()
 - `[] 数组`， `array` 和 `vector` 之间的区别：
   - array vector中都对 [] 操作符进行了重载，所以都可以通过下标索引进行访问。
   - **vector 属于动态容器**，可以通过 push_back/pop_back emplace/emplace_back insert 等方法动态增删元素；**array 和 []数组 都属于固定容量容器**。
-  - vector 和 array 中，包含（正反两种）迭代器遍历机制；size() empty() 函数；swap() 函数；
+  - vector 和 array 中，包含（正反两种）迭代器遍历机制；size() empty() 函数；swap() 函数；array 中的`fill()`函数用于数组值的赋值。
+    ```
+    array<int, 5> temp; //构造一个大小为5的整型数组
+    temp.fill(0);
+    ```
   - [从功能上来看，array 可以看作是一种介于 []数组 和 vector 之间的容器](https://blog.csdn.net/acelit/article/details/68068207)。可以将那些vector或者map当成数组使用的方式解放出来，也可以将使用普通数组但对自己使用的过程中的安全存在质疑的代码用 array 解放出来。array 是C++11中的。
-- 容器 swap 机制 ？？？
 - `emplace_back()` 与 `push_back()`: ？？？
 
 ### 无序容器
