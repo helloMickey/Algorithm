@@ -32,7 +32,7 @@ traveled = new vector<vector<bool> >(M, vector<bool>(N, 0)); // M*N 的初始值
 迭代器：
 begin()/end(), rbegin()/rend(), cbegin()/cend(), crbegin()/crend()
 增:
-push_back() , insert()
+push_back() , insert() // cont.insert(cont.end(), cont1.begin(), cont2.end())
 删：
 pop_back(), erase(), clear()
 改：
