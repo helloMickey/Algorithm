@@ -1,6 +1,37 @@
 // https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/
 
-// 排列
+// DFS 构造排列
+
+class Solution_Fast { // 更为高效的解决方案
+public:
+    vector<string> permutation(string s) {
+        vector<string> res;
+        dfs(res,s,0);
+        return res;
+    }
+
+	void  dfs(vector<string> &res, string &s, int pos) {
+		//s[pos, size()-1] 字符串所能构成的排列情况
+		if (pos == s.size())
+			res.push_back(s); // 记录一个结果
+
+		// abcd 遍历不同的字符作为 string 的头
+		for (int i = pos; i < s.size(); i++) { 
+			bool flag = true;
+			//之前选中作为头字符的，与当前字符相同 => 结果是等效，剪枝，跳过 DFS
+			for (int j = pos; j < i; j++)
+				if (s[j] == s[i])
+					flag = false;
+			
+			if (flag) {
+				swap(s[pos], s[i]); // 替换至首位
+				dfs(res, s, pos + 1);
+				swap(s[pos], s[i]); // 恢复
+
+			}
+		}
+	}
+};
 
 class Solution {
 public:
@@ -37,34 +68,5 @@ public:
             remains.push_back(c);
         }
         return _pertmutation(remains);
-    }
-};
-
-class Solution_Fast { // 更为高效的解决方案
-public:
-    vector<string> permutation(string s) {
-        vector<string> res;
-
-        dfs(res,s,0);
-       
-        return res;
-    }
-
-    void  dfs(vector<string> &res,string &s,int pos){
-        if(pos == s.size())
-            res.push_back(s); // 记录一个结果
-
-        for(int i=pos;i<s.size();i++){
-            bool flag = true;
-            for(int j = pos; j < i; j++)//之前访问过的中存在与当前字母相同的，等效，剪枝
-                if(s[j] == s[i])
-                    flag = false;
-            if(flag){
-                swap(s[pos],s[i]);
-                dfs(res,s,pos+1);
-                swap(s[pos],s[i]);
-
-            }
-        }
     }
 };

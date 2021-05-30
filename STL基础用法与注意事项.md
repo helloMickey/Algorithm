@@ -1,7 +1,6 @@
 # C++ STL 的常见用法
 
 ## STL
-### 有序容器
 在STL中，一般而言：
 - empty() 函数用于判断当前容器中是否为空, clear()一般用于清空容器中的内容。size()获取容器的当前元素个数。
 - 查询函数的返回结果为迭代器类型，如果未查询到则对应end位置的迭代器。如果想要获取到迭代器对应元素的下标，在 It - begin()
@@ -18,7 +17,7 @@
         for (size_t i = 0; i<N; ++i) swap (a[i],b[i]);
     }
   ```
-
+### 有序容器
 ```C++
 // https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html
 #include <vector>
@@ -47,19 +46,37 @@ find() // 函数范围值为迭代器类型，如果没有查询到相关元素�
 push_back() , insert()
 删：
 pop_back(), pop_front(), erase(), clear()
+```
+笔记：
+- `[] 数组`， `array` 和 `vector` 之间的区别：
+  - array vector中都对 [] 操作符进行了重载，所以都可以通过下标索引进行访问。
+  - **vector 属于动态容器**，可以通过 push_back/pop_back emplace/emplace_back insert 等方法动态增删元素；**array 和 []数组 都属于固定容量容器**。
+  - vector 和 array 中，包含（正反两种）迭代器遍历机制；size() empty() 函数；swap() 函数；array 中的`fill()`函数用于数组值的赋值。
+    ```
+    array<int, 5> temp; //构造一个大小为5的整型数组
+    temp.fill(0);
+    ```
+  - [从功能上来看，array 可以看作是一种介于 []数组 和 vector 之间的容器](https://blog.csdn.net/acelit/article/details/68068207)。可以将那些vector或者map当成数组使用的方式解放出来，也可以将使用普通数组但对自己使用的过程中的安全存在质疑的代码用 array 解放出来。array 是C++11中的。
+- `emplace_back()` 与 `push_back()`: ？？？
 
-
+```C++
 #include <queue>
 常用方法：
 增： push()
 删： pop()
 查： front(), back(), size(), empty()
 
+queue头文件中priority_queue代表优先级队列,通过最大堆实现.
+empty(), size()
+top(), pop()
+push()
+
 #include <deque>
 deque更为实用一点, 相比 queue 其支持迭代器
 增：push_back(), push_front(), insert()
 删：pop_back(), pop_front() // 注意 pop_ 函数的返回值为空，通过 front() 来获取
 查：operator[], at(), front(), back()
+
 
 #include <stack>
 // stack<int>
@@ -77,16 +94,14 @@ top(), pop()
 ```
 
 笔记：
-- `[] 数组`， `array` 和 `vector` 之间的区别：
-  - array vector中都对 [] 操作符进行了重载，所以都可以通过下标索引进行访问。
-  - **vector 属于动态容器**，可以通过 push_back/pop_back emplace/emplace_back insert 等方法动态增删元素；**array 和 []数组 都属于固定容量容器**。
-  - vector 和 array 中，包含（正反两种）迭代器遍历机制；size() empty() 函数；swap() 函数；array 中的`fill()`函数用于数组值的赋值。
-    ```
-    array<int, 5> temp; //构造一个大小为5的整型数组
-    temp.fill(0);
-    ```
-  - [从功能上来看，array 可以看作是一种介于 []数组 和 vector 之间的容器](https://blog.csdn.net/acelit/article/details/68068207)。可以将那些vector或者map当成数组使用的方式解放出来，也可以将使用普通数组但对自己使用的过程中的安全存在质疑的代码用 array 解放出来。array 是C++11中的。
-- `emplace_back()` 与 `push_back()`: ？？？
+- 在`priority_queue`中: A user-provided Compare can be supplied to change the ordering, e.g. using std::greater<T> would cause the smallest element to appear as the top().
+- `priority_queue`中通过**Compare模板**控制大小比较的过程，从而实现最小堆
+  ```C++
+  priority_queue<int> lo; // max heap
+  priority_queue<int, vector<int>, greater<int>> hi;   // min heap
+  ```
+- `set`和`multiset` 属于有序容器。不同的是后者允许存在重复元素，而前者不允许。通常使用平衡二叉树实现，实际上set和multiset通常以红黑树实现。具有对数搜索时间复杂度，但是不能直接改变元素值，因为这样会打乱原有的顺序。改变元素值的方法是：先删除旧元素，再插入新元素。
+
 
 ### 无序容器
 ```C++
@@ -139,11 +154,15 @@ max_element()
 
 
 // reverse(); 
-//make_heap(vector.begin(), vector.end()), pop_heap(..., ...);
+
+//make_heap(vector.begin(), vector.end()), 
+//pop_heap(..., ...);
 
 其他常用：
 std::accmulate(wall[0].begin(), wall[0].end(), 0); // 累加函数
 ```
+笔记:
+- STL在 algorithm 中实现了对存储在数组或vector中的元素进行堆操作的函数，包括 `make_heap` 建堆, `pop_heap` 堆中弹出, `push_heap` 堆中插入, 以及 `sort_heap` 堆排序，即**用数组或vector数据容器来实现堆**。默认情况下是max-heap，该堆实际上是以一个vector表现的完全二叉树。更为便捷的方法是使用 `prior_queue` 其内部对应一个最大堆.
 
 ## C++中常用的头文件库&相应的函数
 ### 输出、输出
