@@ -58,6 +58,7 @@ pop_back(), pop_front(), erase(), clear()
     ```
   - [从功能上来看，array 可以看作是一种介于 []数组 和 vector 之间的容器](https://blog.csdn.net/acelit/article/details/68068207)。可以将那些vector或者map当成数组使用的方式解放出来，也可以将使用普通数组但对自己使用的过程中的安全存在质疑的代码用 array 解放出来。array 是C++11中的。
 - `emplace_back()` 与 `push_back()`: ？？？
+- **返回值不能为 `vector<int>&` 会造成出错**！！！With C++11, [std::vector has move-semantics](https://stackoverflow.com/questions/15704565/efficient-way-to-return-a-stdvector-in-c), which means the local vector declared in your function will be moved on return and in some cases even the move can be elided by the compiler.
 
 ```C++
 #include <queue>
