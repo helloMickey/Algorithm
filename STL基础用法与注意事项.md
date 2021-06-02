@@ -92,6 +92,9 @@ top(), pop()
 初始化： std::map<char,int> mymap; mymap['a']=101;
 插入：map.insert(make_pair(key, value)); // key，value的访问，pair -> first, pair -> second
 查询：map.find(key) == map.end;
+count() // 指定key下是否存在元素，返回值为 0 或 1。一般用count()判断某个key是否存在
+删除：
+erase(key);
 ```
 
 笔记：
@@ -108,7 +111,7 @@ top(), pop()
 ```C++
 #include <unorder_set> //元素位置基于hash值决定
 常用方法（与STL其他容器的使用方法类似）：insert(), erase(), find(),
-count() //
+
 #include <unorder_map> // key-value
 
 哈希表：数据的查询时间为 O(1) ， 最坏情况下为 O(n). unordered_set 和 unordered_map 的操作方式都和普通的 set 和 map 类似。这两者的只有正向迭代方法 begin()/cbegin()。在内部，unordered_set 中的元素未按任何特定顺序排序，而是根据它们的哈希值组织为存储桶，以允许直接通过它们的值快速访问各个元素（平均具有常数平均时间复杂度）。
@@ -123,7 +126,7 @@ count() //
     unordered_map 的用法和 map 是一样的，提供了 insert，size，count等操作，并且**里面的元素也是以pair类型来存贮**的。层实现是完全不同的，就外部使用来说却是一致的。
 
     `set` 和 `unordered_set` 的的区别也是如此。前者基于红黑树实现，后者基于哈希表实现。
-- 
+- **注意**：unordered_set/map 是基于哈希表并通过拉链法来处理hash冲突问题，但不要误解为同一个 key 下可以取出多个值来，冲突处理是在说hash(key)相同的情况。key 和 value 是一一对应的，可以将value设置为vector类型对象。
 
 ### algorithm
 ```C++
