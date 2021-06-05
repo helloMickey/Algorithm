@@ -1,3 +1,8 @@
+/*
+求矩阵的最大子矩阵（子矩阵中所有元素的和，在所有子矩阵中是最大的）
+
+https://blog.csdn.net/Double2hao/article/details/51727420
+*/
 
 #include<iostream>
 #include<vector>

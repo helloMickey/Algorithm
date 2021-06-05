@@ -1,4 +1,4 @@
-//ÇóÕýÕûÊýN(N>1)µÄÖÊÒòÊýµÄ¸öÊý¡£ ÏàÍ¬µÄÖÊÒòÊýÐèÒªÖØ¸´¼ÆËã¡£Èç120=2*2*2*3*5£¬¹²ÓÐ5¸öÖÊÒòÊý¡£
+//æ±‚æ­£æ•´æ•°N(N>1)çš„è´¨å› æ•°çš„ä¸ªæ•°ã€‚ ç›¸åŒçš„è´¨å› æ•°éœ€è¦é‡å¤è®¡ç®—ã€‚å¦‚120=2*2*2*3*5ï¼Œå…±æœ‰5ä¸ªè´¨å› æ•°ã€‚
 #include<iostream>
 #include<vector>
 using namespace std;

@@ -12,7 +12,7 @@ void fun_reverse()
     vector<int> result; 
     while(cin >> a){
         cin >> b;
-       //ÏÖÔÚÓÖÈÎÒâÁ½¸öÕýÕûÊý£¬ÎÊËûÃÇÁ½¸öÊý·´×ªµÄºÍÊÇ·ñµÈÓÚÁ½¸öÊýµÄºÍµÄ·´×ª¡£ 
+       //çŽ°åœ¨åˆä»»æ„ä¸¤ä¸ªæ­£æ•´æ•°ï¼Œé—®ä»–ä»¬ä¸¤ä¸ªæ•°åè½¬çš„å’Œæ˜¯å¦ç­‰äºŽä¸¤ä¸ªæ•°çš„å’Œçš„åè½¬ã€‚ 
         int sum = a + b;
         string a_s, b_s, s_s;
         {
