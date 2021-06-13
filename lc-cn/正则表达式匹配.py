@@ -9,6 +9,7 @@ class Solution:
         first_ch_match = (len(s) > 0) and p[0] in {s[0], '.'}
         if len(p) >= 2 and p[1] == '*':  
             # 不知道 * 会重复多少次（0次或者更多次）
+            # 匹配一次 or 若干次
             return self.isMatch(s, p[2:]) or (first_ch_match and self.isMatch(s[1:], p))
         else:
              # 没有*的情况下简单

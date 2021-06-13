@@ -1,7 +1,7 @@
 #
 # @lc app=leetcode.cn id=64 lang=python3
 #
-# [64] 最小路径和
+# [64] 最小路径和：[62]不同路径的简单变种，一个是计数，一个是累加求和。
 #
 
 # @lc code=start

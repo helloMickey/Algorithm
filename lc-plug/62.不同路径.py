@@ -18,7 +18,7 @@ class Solution:
 
     def uniquePaths_old(self, m: int, n: int) -> int:
         """
-        有很多重复遍历的位置，会超时=》 剪纸；动态规划；
+        有很多重复遍历的位置，会超时=》 剪枝；动态规划；
         """
         if m < 1 or n < 1:
             return 0

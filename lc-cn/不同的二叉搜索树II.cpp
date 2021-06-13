@@ -15,7 +15,7 @@ class Solution {
 public:
     //以当前区间能够构建的，所有可能的二叉搜索树
     vector<TreeNode*> generateTrees(int l, int u){
-    // vector<TreeNode*>& generateTrees(int l, int u){  // 这里为什么不能传引用 ？？？？
+    // vector<TreeNode*>& generateTrees(int l, int u){  // 这里为什么函数返回不能是引用类型 ？？？？
 
         // l, u 区间的上下界
         if(l > u){
