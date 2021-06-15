@@ -138,6 +138,9 @@ erase(key);
 
 相比其它类型容器，关联式容器查找、访问、插入和删除指定元素的效率更高。
 ### algorithm
+- 排序 `sort()`
+- 最大、最小值 `min_element()`
+- 逆序 `reverse()`
 ```C++
 #include <cmath>
 // absf(); asin(); sin();
