@@ -18,32 +18,46 @@
     }
   ```
 ### 有序容器
+
+Vector
 ```C++
 // https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html
 #include <vector>
 初始化：
 vector<int> myVector(5); vector<int> myVector(5, 0); vector<int> myVector = { }; 
 vector(begin,end);
+
 //定义二维动态数组 N行 M列 
 vector<vector<int> > obj(N, vector<int>(M)); 
 obj = vector<vector<int> >(M, vector<int>(N))
 traveled = new vector<vector<bool> >(M, vector<bool>(N, 0)); // M*N 的初始值均为 0 的二维数组
+
+// 在普通数组中，int[][] dp = new int[M][N];
+
 迭代器：
 begin()/end(), rbegin()/rend(), cbegin()/cend(), crbegin()/crend()
+
 增:
 push_back() , insert() // cont.insert(cont.end(), cont1.begin(), cont2.end())
+
 删：
-pop_back(), erase(), clear()
+pop_back(), erase(iterator pos), clear() // erase(iterator first, iterator last)
+
 改：
 myVector[i] = value
+
 查：
 front(), back(), at()
 find() // 函数范围值为迭代器类型，如果没有查询到相关元素返回值为 container.end()
-
+```
+List
+```C++
 #include <list>
 //list<int>
 增:
 push_back() , insert()
+splice() // void splice( iterator position, list<T,Allocator>& x, iterator first, iterator last ); 将 x 中 first 到 last 的内容 截取到 当前对象中。注意，x中这部分内容会被剔除掉
+
 删：
 pop_back(), pop_front(), erase(), clear()
 ```
@@ -67,6 +81,7 @@ pop_back(), pop_front(), erase(), clear()
 
 - `list` 和 `forward-list`，一个是双向链表，一个是单向链表。 
 
+Queue
 ```C++
 #include <queue>
 常用方法：
@@ -85,12 +100,16 @@ deque更为实用一点, 相比 queue 其支持迭代器
 删：pop_back(), pop_front() // 注意 pop_ 函数的返回值为空，通过 front() 来获取
 查：operator[], at(), front(), back()
 
-
+```
+Stack
+``` C++
 #include <stack>
 // stack<int>
 push()
 top(), pop()
-
+```
+Set & Map
+```C++
 集合：
 #include <set>
 
@@ -98,7 +117,7 @@ top(), pop()
 #include <map> // STL中的map就是字典，key通过hash方法进行索引
 初始化： std::map<char,int> mymap; mymap['a']=101;
 插入：map.insert(make_pair(key, value)); // key，value的访问，pair -> first, pair -> second
-查询：map.find(key) == map.end;
+查询：map.find(key) == map.end();
 count() // 指定key下是否存在元素，返回值为 0 或 1。一般用count()判断某个key是否存在
 删除：
 erase(key);
@@ -193,7 +212,7 @@ std::accmulate(wall[0].begin(), wall[0].end(), 0); // 累加函数
 ```
 
 ### 字符串
-在C++ <string> 类库中，一般与位置相关的函数的参数或返回值类型是 size_t 类型，指明所处 string 中的位置。
+在C++ <string> 类库中，一般与位置相关的函数的参数或返回值类型是 size_t 类型（不是STL中的迭代器哈~~），指明所处 string 中的位置。
 ```C++
 // http://c.biancheng.net/view/400.html
 #include <string>

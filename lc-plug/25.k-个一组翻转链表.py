@@ -59,3 +59,31 @@ class Solution:
         return pre_head.next
 # @lc code=end
 
+class Solution { // OA 取巧版，现在代码存在问题
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(k < 2) return head;
+
+        auto p = head;
+        list<int> stl_list;
+        while(p){
+            stl_list.push_back(p->val);
+        }
+        int i = 0;
+        while(stl_list.size() - i >= k){ // 最后一截不反转
+            // 逐个进行 k 反转
+            int c = k - 1;
+            while(c){
+                // stl_list.splice(i, stl_list, stl_list.begin() + (i+k-1), stl_list.begin()+(i+k));
+                stl_list.splice(i, stl_list, std::next(stl_list.begin(), i+k-1), std::next(stl_list.begin(), i+k));
+                c--;
+            }
+        }
+        int i = 0;
+        while(p){
+            p->val = list[i];
+            i++;
+        }
+        return head;
+    }
+};
