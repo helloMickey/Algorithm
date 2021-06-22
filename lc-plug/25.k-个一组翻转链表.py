@@ -59,6 +59,7 @@ class Solution:
         return pre_head.next
 # @lc code=end
 
+'''
 class Solution { // OA 取巧版，现在代码存在问题
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
@@ -87,3 +88,4 @@ public:
         return head;
     }
 };
+'''

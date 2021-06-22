@@ -1,6 +1,10 @@
 # C++ STL 的常见用法
-
 ## STL
+
+<img src="pics/note/stl1.png" width = "550" align=center />
+
+<img src="pics/note/stl2.png" width = "550" align=center />
+
 在STL中，一般而言：
 - empty() 函数用于判断当前容器中是否为空, clear()一般用于清空容器中的内容。size()获取容器的当前元素个数。
 - 查询函数的返回结果为迭代器类型，如果未查询到则对应end位置的迭代器。如果想要获取到迭代器对应元素的下标，在 It - begin()
@@ -17,6 +21,8 @@
         for (size_t i = 0; i<N; ++i) swap (a[i],b[i]);
     }
   ```
+迭代器：
+- ++it 式的指针移动，在C++11中提供的 `std::next()` `std::prev()` 可以用来实现同样的功能。container.begin() + step 也同理
 ### 有序容器
 
 Vector
@@ -71,13 +77,20 @@ pop_back(), pop_front(), erase(), clear()
     temp.fill(0);
     ```
   - [从功能上来看，array 可以看作是一种介于 []数组 和 vector 之间的容器](https://blog.csdn.net/acelit/article/details/68068207)。让 C++ 中的数组化身为一个容器。可以将那些vector或者map当成数组使用的方式解放出来，也可以将使用普通数组但对自己使用的过程中的安全存在质疑的代码用 array 解放出来。array 是C++11中的。
-- `emplace_back()` 与 `push_back()`: ？？？
+- `emplace_back()` 与 `push_back()`: 
+  
+  如果参数是左值，两个调用的都是copy constructor，如果参数是右值，两个调用的都是move constructor（C++ 11后push_back也支持右值）。
+
+  最主要的区别是，emplace_back支持in-place construction，也就是说emplace_back(10, “test”)可以只调用一次constructor，而push_back(MyClass(10, “test”))必须多一次构造和析构。因此，emplace_back的最大优势是**它可以直接在vector的内存中去构建对象，不用在外面构造完了再copy或者move进去！！！**
+
+  👉[emplace_back VS push_back](https://haoqchen.site/2020/01/17/emplace_back-vs-push_back/)
+
 <!-- - **返回值不能为 `vector<int>&` 会造成出错** ? -->
 - **函数返回值不能为 `vector<TreeNode*> &` 会造成出错** ？？？，见👉 [不同的二叉搜索树II](lc-cn/不同的二叉搜索树II.cpp)
   
   With C++11, [std::vector has move-semantics](https://stackoverflow.com/questions/15704565/efficient-way-to-return-a-stdvector-in-c), which means the local vector declared in your function will be moved on return and in some cases even the move can be elided by the compiler.
 
-  所以vector作为返回值的函数声明上不用加 &. <=** 错！！！**
+  所以vector作为返回值的函数声明上不用加 &. <= **错了！**
 
 - `list` 和 `forward-list`，一个是双向链表，一个是单向链表。 
 
@@ -105,8 +118,9 @@ Stack
 ``` C++
 #include <stack>
 // stack<int>
-push()
+push(), emplace()
 top(), pop()
+size(), empty()
 ```
 Set & Map
 ```C++
@@ -243,12 +257,6 @@ erase() // Erases part of the string
 		start_p = end_p + 1; // 新的起点
 		end_p = str.find(' ', start_p);
 	}
-字符串按照空格划分——2
-    string str;
-    istringstream strcin(str);
-    string s;
-    vector<string> vs;
-    while(strcin >> s) vs.push_back(s);
 
 
 其他数值类型 <=>字符串
@@ -262,7 +270,34 @@ std::atoi(const char* str); // string::c_str() 将 string 类型转化为 C 风�
 #define _MAX 21e+8
 #define _MIN -21e+8
 ```
+`<sstream>` 中定义了三个类：`istringstream` 、`ostringstream` 和 `stringstream`，分别用来进行**流的输入**、**输出**和**输入输出操作**。
 
+与 iostream 类似，`<<` 表示写入流中 `>>` 表示从流中读取
+
+```C++
+stringstream
+
+str(); // 将流中内容转为 string
+clear(); // 清空当前流中的内容
+
+字符串按照空格划分
+
+    string str;
+    istringstream strcin(str);
+    string s;
+    vector<string> vs;
+    while(strcin >> s) vs.push_back(s);
+
+
+字符串转整形
+    stringstream sstream;
+    int num;
+    // 插入字符串
+    sstream << "456";
+    // 转换为int类型
+    sstream >> num;
+
+```
 ## 常见的使用错误
 - C++11 中增添了foreach的特性，注意要对遍历元素的值进行修改需要是对元素的引用或者指针。
 - STL deque容器中的 pop_front() pop_back() 范围值为void, 通过 front() 和 back() 来访问值
