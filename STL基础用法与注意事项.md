@@ -1,10 +1,31 @@
 # C++ STL 的常见用法
-## STL
 
 <img src="pics/note/stl1.png" width = "550" align=center />
-
+-
 <img src="pics/note/stl2.png" width = "550" align=center />
 
+## 一些问题的记录
+
+- 容器中 size 和 capacity
+
+  size就是实际存入数据空间的大小，capacity是容量，即能当前空间可容纳的数据个数，超过该空间大小会进行扩容（在 vector 中，容器扩容以两倍当前容量大小进行扩容）。
+
+- vector clear 函数具体做了什么操作？什么情况下会调用类的析构函数？
+  
+- vector 的 push_back 做了什么操作？分几种情况？有没有分析过push_back n次平均复杂度？😀
+  
+  重新配置空间大小 -> 拷贝数据 -> 释放旧的空间
+
+- STL迭代器失效情况？ 
+
+      待补充...
+
+- STL线程安全 ？
+
+      待补充...
+
+
+## 学习笔记
 在STL中，一般而言：
 - empty() 函数用于判断当前容器中是否为空, clear()一般用于清空容器中的内容。size()获取容器的当前元素个数。
 - 查询函数的返回结果为迭代器类型，如果未查询到则对应end位置的迭代器。如果想要获取到迭代器对应元素的下标，在 It - begin()
