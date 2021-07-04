@@ -18,7 +18,11 @@ leetcode之外（PAT、fudan 等中）有部分的还存在问题....没有实�
 - [C++ STL笔记](./STL基础用法与注意事项.md) 
 
 - [数据结构笔记](./408_数据结构.md)
-  
+
+ 其他：
+
+ - OJ的输入输出的问题 [牛客网在线判题系统使用帮助](https://www.nowcoder.com/discuss/276)
+
 # 算法题笔记
 目录：
 - 数据结构
@@ -58,9 +62,23 @@ leetcode之外（PAT、fudan 等中）有部分的还存在问题....没有实�
 
 相关题目：
 - 双栈实现队列；[双队列也可实现栈](https://assets.leetcode-cn.com/solution-static/225/225_fig1.gif)，[单个队列也可实现栈](https://assets.leetcode-cn.com/solution-static/225/225_fig2.gif)
+
 - 字符串表达式计算：中缀表达式转后缀表达式（**逆波兰表达式**）。 [例1](lc-cn/基本计算器.cpp)， [例2](lc-cn/基本计算器2.cpp)， 符号栈是否进行弹出取决于，当前操作符与栈顶操作符优先谁高，栈顶优先级高或者相等则先进行出栈和计算（相同优先级别，从左到右计算， 所以也要弹出），直到栈顶元素优先机低于当前操作符
 
+- **`单调栈`**，是借助栈保存遍历过程中的递增、递减情况，以辅助算法的实现。 例：
+  - [下一个更大元素I](lc-cn/下一个更大元素1.cpp)
+  - [每日温度](lc-cn/每日温度.cpp)
+  - [柱状图中最大的矩形](lc-cn/柱状图中最大的矩形.cpp)
+  - [接雨水](lc-cn/接雨水.cpp)
+
+  总结：**单调递减栈**，一般用来在遍历元素的过程中，找后续第一个比自身大的元素。递增栈反之~
+
+
 ## 集合
+
+- 并查集
+  
+  因为判断两个元素是否处于同一个集合的时候，通过比对两个是否拥有同样的 root。所以可以直接将集合中元素指向 root，压缩路径，以提高访问速度。
 
 ## 哈希表
 知识点：地址映射函数 + 冲突处理方法。
@@ -120,15 +138,22 @@ C++中的堆
 
 
 排序：
+- 计数排序思想：
+
+  对公司员工按照年龄进行排序，年龄的可取值（0~99）。遍历一次统计各个年龄员工的个数，然后再遍历一遍直接将员工放在合适的位置上。时间复杂度O(n) 空间复杂度O(1)
+
 - Top-k 排序：top-k快排中，找到第 k 个基准位置即可。
   
   [**哈希分支法**](https://blog.csdn.net/not_in_mountain/article/details/77963078?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-2.control)：海量数据中出现次数最多的前 K 个，Map-Reduce 思想。
 
 - 归并排序，多路归并思想 👉 [有序矩阵中第K小的元素](lc-cn/有序矩阵中第K小的元素.cpp) 
   
+- 快排实现 ： [雪糕的最大数量](lc-cn/雪糕的最大数量.cpp)
 
 相关的题目：
 - 排序的延伸，[把数组排成最小的数](lc-cn/剑指offer/把数组排成最小的数.cpp)
+
+
 ## 字符串相关
 - 🚩字符串编辑距离
 - **KMP — 字符串匹配**
@@ -158,12 +183,17 @@ C++中的堆
       // 当 s[i] 与主串匹配失败时，应从s[ next[i] - 1 ] 处接着与主串继续匹配
 
   相关题目：👉 [最长快乐前缀](lc-cn/最长快乐前缀.cpp)
+
+
 ## 图相关算法
-深度优先DFS、广度优先BFS；一般深度优先遍历通过递归实现，广度优先遍历通过队列实现。
-- 通过DFS构造排列组合 👉 [字符串排列](lc-cn/剑指offer/字符串的排列.cpp)
+深度优先DFS、广度优先BFS；一般深度优先遍历通过递归实现，广度优先遍历通过队列实现。广度优先一个经典的应用就是寻找最优路径。
+
+- 通过DFS构造**排列** 👉 [字符串排列](lc-cn/剑指offer/字符串的排列.cpp)
+- 基于邻接表的 DFS 遍历 👉 [传递信息](lc-cn/传递信息.cpp)
 
 最小生成树；
 
+- [连接所有点的最小费用](lc-cn\连接所有点的最小费用.cpp)
 
 最短路径；
 
@@ -278,3 +308,4 @@ C++中的位运算操作符： 带符号左右移：`<<` 、`>>`， 与或非：
 #### 📋 其他相关：
 - [两数相除](https://leetcode-cn.com/problems/divide-two-integers/)
 - [巴什博奕](https://zhuanlan.zhihu.com/p/87826616)
+- [Shuffle模拟](lc-cn/打乱数组.cpp)
