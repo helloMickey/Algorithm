@@ -42,6 +42,7 @@
         for (size_t i = 0; i<N; ++i) swap (a[i],b[i]);
     }
   ```
+- erase(iterator ite) 删除容器中某个位置的元素，
 迭代器：
 - ++it 式的指针移动，在C++11中提供的 `std::next()` `std::prev()` 可以用来实现同样的功能。container.begin() + step 也同理
 ### 有序容器
@@ -82,11 +83,13 @@ List
 #include <list>
 //list<int>
 增:
-push_back() , insert()
+push_back() , push_front(), emplace_back()
+insert()
 splice() // void splice( iterator position, list<T,Allocator>& x, iterator first, iterator last ); 将 x 中 first 到 last 的内容 截取到 当前对象中。注意，x中这部分内容会被剔除掉
 
 删：
-pop_back(), pop_front(), erase(), clear()
+pop_back(), pop_front(), 
+erase(), clear()
 ```
 笔记：
 - `[] 数组`， `array` 和 `vector` 之间的区别：
@@ -106,6 +109,7 @@ pop_back(), pop_front(), erase(), clear()
 
   👉[emplace_back VS push_back](https://haoqchen.site/2020/01/17/emplace_back-vs-push_back/)
 
+  `emplace`、`emplace_back()`、`emplace_front()` 三者是一样的，分别对应 insert 、push_front 和 push_back
 <!-- - **返回值不能为 `vector<int>&` 会造成出错** ? -->
 - **函数返回值不能为 `vector<TreeNode*> &` 会造成出错** ？？？，见👉 [不同的二叉搜索树II](lc-cn/不同的二叉搜索树II.cpp)
   
@@ -129,7 +133,7 @@ top(), pop()
 push()
 
 #include <deque>
-deque更为实用一点, 相比 queue 其支持迭代器
+deque 更为实用一点, 相比 queue 其支持迭代器
 增：push_back(), push_front(), insert()
 删：pop_back(), pop_front() // 注意 pop_ 函数的返回值为空，通过 front() 来获取
 查：operator[], at(), front(), back()
@@ -165,6 +169,8 @@ erase(key);
   priority_queue<int> lo; // max heap
   priority_queue<int, vector<int>, greater<int>> hi;   // min heap
   ```
+  [自定义priority_queue中的比较函数](https://www.cnblogs.com/flipped/p/5691430.html);
+
 - `set`和`multiset` 属于有序容器。不同的是后者允许存在重复元素，而前者不允许。通常使用平衡二叉树实现，实际上set和multiset通常以红黑树实现。具有对数搜索时间复杂度，但是不能直接改变元素值，因为这样会打乱原有的顺序。改变元素值的方法是：先删除旧元素，再插入新元素。
 
 

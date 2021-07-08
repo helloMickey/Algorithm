@@ -24,7 +24,7 @@ public:
 				while (height[left_bi] < cur_h && !des.empty()) {
 					mid_hi = left_bi;
 					left_bi = des.top(); des.pop();
-					// 当前凹槽可以存储的雨水量
+					// 当前凹槽可以存储的雨水量 = 高 * 宽
 					res += (min(height[left_bi], cur_h) - height[mid_hi]) * (i - left_bi - 1);
 				}
                 if (height[left_bi] > cur_h) des.push(left_bi); // 如果左边界大于当前 cur_h， 则需要保留
