@@ -19,6 +19,8 @@ leetcode之外（PAT、fudan 等中）有部分的还存在问题....没有实�
 
 - [数据结构笔记](./408_数据结构.md)
 
+- [maomao算法笔记](https://maomaoalgo.gitbook.io/python/) <= 按照leetcode题型进行分类，动态规划这块整理的不错
+
  其他：
 
  - OJ的输入输出的问题 [牛客网在线判题系统使用帮助](https://www.nowcoder.com/discuss/276)
@@ -108,6 +110,8 @@ leetcode之外（PAT、fudan 等中）有部分的还存在问题....没有实�
 
 `平衡二叉树`：检查二叉树是否平衡；二叉树平衡调整。
 
+`红黑树`：红黑树着色规则？
+
 其他：
 - 给定一个先序遍历结果，求可能的后续遍历结果的可能数 = catalan 数 = C(2n,n) / (n+1)。
 假设n个节点存在二叉排序树的个数是G(n)，G(n) = G(0)*G(n-1)+G(1)*(n-2)+...+G(n-1)*G(0)
@@ -139,6 +143,9 @@ C++中的堆
 - [圆圈中最后剩下的数字](lc-cn/剑指offer/圆圈中最后剩下的数字.cpp)
 - [不同的二叉搜索树2](lc-cn/不同的二叉搜索树II.cpp)
 
+DFS过程本身很适合通过递归实现：
+- [从字符串复原IP地址](lc-cn/复原IP地址.cpp)
+
 这些题不会做：
 - [预测赢家](lc-cn/预测赢家.cpp)
 
@@ -158,6 +165,8 @@ C++中的堆
   [**哈希分支法**](https://blog.csdn.net/not_in_mountain/article/details/77963078?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-2.control)：海量数据中出现次数最多的前 K 个，Map-Reduce 思想。
 
 - 归并排序，多路归并思想 👉 [有序矩阵中第K小的元素](lc-cn/有序矩阵中第K小的元素.cpp) 
+
+  [合并K个升序链表](lc-cn/合并K个升序链表.cpp)
   
 - 快排实现 ： [雪糕的最大数量](lc-cn/雪糕的最大数量.cpp)
 
@@ -169,6 +178,8 @@ C++中的堆
 - 🚩字符串编辑距离
 - **KMP — 字符串匹配**
   
+  [如何更好地理解和掌握 KMP 算法?](https://www.zhihu.com/question/21923021)
+
   主要在于 next[j] 数组的计算，next[j] 表示在模式串第 j 个位置匹配失败时，应该下一步应该跳转至模式串的第几个字符。next[j] 为 0 时，主串前移一位，模式串重新从头开始匹配。
 
       int m = evil.size();
@@ -184,14 +195,15 @@ C++中的堆
             }
         }
 
+  `next数组的性质`：S[0] 到 S[i] 这一段子串中，前next[i]个字符与后next[i]个字符一模一样。
+  
   最后得到的 fail / next 数组中的内容
 
       // 求 KMP 算法中的 next 数组，next数组的本质是 max_match_len 数组
       // a b a b a b
       // 0 0 1 2 3 4
 
-      // len = next[i] 表示 s[0:len+1] = s[i-len+1: i]
-      // 当 s[i] 与主串匹配失败时，应从s[ next[i] - 1 ] 处接着与主串继续匹配
+      // 当 s[i] 与主串匹配失败时，应从s[ next[i - 1] ] 处接着与主串继续匹配
 
   相关题目：👉 [最长快乐前缀](lc-cn/最长快乐前缀.cpp)
 
@@ -216,6 +228,9 @@ C++中的堆
 
 
 ## 动态规划
+
+[动态规划题型分类](https://maomaoalgo.gitbook.io/python/hui-su-yu-dong-tai-gui-hua)
+
 💔 动态规划的核心：1）**定义问题状态**；2）**获取状态之间的转移方程，用已经计算的状态值来推算当前新的状态值**；3）求解问题时，采用 递归 或 递推（迭代） 均可。
 
 在构建状态之间的转移方程时，如何讲**原问题进行表述**是最为关键的一步。这里列举几个例子：
@@ -225,7 +240,7 @@ C++中的堆
 合理的表述之上状态转移方程的构建则十分简单：`看 当前状态 可以转移到其它哪些状态。另一种方式是看当 前状态 可以由之前的哪些状态转移`。
 
 - [最大连续子序列](nowcoder/最大序列和.cpp)，[环形子数组的最大和](lc-cn/环形子数组的最大和.cpp)
-- 最长不下降子序列
+- [最长递增子序列](lc-cn/最长递增子序列.cpp)
   
       dp[i] = max(dp[j] + 1) , s.t. dp[i] > dp[j],  j in (0, i-1): 
 
@@ -289,6 +304,7 @@ C++中的堆
 这些题不会做：主要**还是不知道一道题是不是要用dp来做，以及状态如何表示** ！
 - [预测赢家](lc-cn/预测赢家.cpp)
 - [单词拆分](lc-cn/单词拆分.cpp)
+- [恰有K根木棍可以看到的排列数目](lc-cn/恰有K根木棍可以看到的排列数目.cpp) <= 借助滚动数组进行空间优化
 
 
 
@@ -310,13 +326,18 @@ C++中的位运算操作符： 带符号左右移：`<<` 、`>>`， 与或非：
 - [数组中数字出现的次数2](lc-cn/剑指offer/数组中数字出现的次数2.cpp)
 - [判断一个整数是否是2的幂](https://leetcode-cn.com/problems/power-of-two/solution/2de-mi-by-leetcode-solution-rny3/) ，如果 n 是正整数并且 n & (n - 1) = 0，那么 n 就是 2 的幂。如果 n 是正整数并且 n & (-n) = n，那么 n 就是 2 的幂
   
+#### 📋 大数操作
+大数的 + - * /
+
+
 #### 📋 快速幂
 
-快速幂，是一个在 Θ(logn) 的时间内计算 a^n 的小技巧，而暴力的计算需要 Θ(n) 的时间。教程 👉 [快速幂思想](https://oi-wiki.org/math/quick-pow/)
-
+快速幂，是一个在 Θ(logn) 的时间内计算 a^n 的小技巧，而暴力的计算需要 Θ(n) 的时间。教程 👉 [快速幂思想](https://oi-wiki.org/math/quick-pow/) 。求 2^1000，可以用 快速幂+大数乘法 2^20 · 2^20 · ......
 
 #### 📋 几何相关：
-- **凸多边形判断**：判断每个顶点所对应的内角是否小于180度 => 通过相邻两边叉积（外积）来判断 👉 [link](https://www.cnblogs.com/wushuaiyi/archive/2013/12/05/3458659.html)。注意叉积的结果是一个伪向量。
+- **凸多边形判断**：一个凸多边形，保证相邻边总是单调的向顺时针或逆时针旋转。叉积的正负可以判断是否单调旋转。 => 通过相邻两边叉积（外积）来判断 👉 [link](https://www.cnblogs.com/wushuaiyi/archive/2013/12/05/3458659.html)。注意二维空间叉积的结果是一个伪向量。
+
+- 判断点是否在三角形内（是否在多边形内）：~
 
 #### 📋 其他相关：
 - [两数相除](https://leetcode-cn.com/problems/divide-two-integers/)

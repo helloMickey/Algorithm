@@ -1,5 +1,7 @@
 // https://leetcode-cn.com/problems/maximum-sum-circular-subarray/
 
+// 面对环的处理方法类似于：打家劫舍2
+
 class Solution {
 public:
     // 动态规划
