@@ -169,14 +169,14 @@ Queue
 ```C++
 #include <queue>
 常用方法：
-增： push()
+增： push(), emplace()
 删： pop()
 查： front(), back(), size(), empty()
 
 queue头文件中priority_queue代表优先级队列,通过最大堆实现.
 empty(), size()
 top(), pop()
-push()
+push(), emplace()
 
 #include <deque>
 deque 更为实用一点, 相比 queue 其支持迭代器
@@ -237,7 +237,9 @@ erase(key);
 ### 无序容器
 ```C++
 #include <unordered_set> //元素位置基于hash值决定
-常用方法（与STL其他容器的使用方法类似）：insert(), erase(), find(),
+insert(), emplace() 
+erase(), 
+find(), count()
 
 #include <unordered_map> // key-value
 

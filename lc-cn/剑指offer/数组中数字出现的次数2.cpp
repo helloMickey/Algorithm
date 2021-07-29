@@ -48,8 +48,7 @@ public:
 };
 #else
 /*
-    用一个数组统计1的数目
-
+    用一个数组统计每一个bit位上1的数目
 */
 class Solution {
 public:
@@ -59,7 +58,7 @@ public:
         for (int num: nums) {
             int index = 0;
             while (num > 1) {
-                bits_num[index++] += num & 1;
+                bits_num[index++] += num & 1; // 对于 num 从右到左统计为 1 的比特位
                 num = num/2;
             }
             bits_num[index] += num & 1;
