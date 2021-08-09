@@ -136,6 +136,8 @@ splice() // void splice( iterator position, list<T,Allocator>& x, iterator first
 删：
 pop_back(), pop_front(), 
 erase(), clear()
+
+#include <forward_list>
 ```
 笔记：
 - `[] 数组`， `array` 和 `vector` 之间的区别：
@@ -271,6 +273,23 @@ find(), count()
   当负载因子（load_factor，平均每个桶的容量）超过设定的最大负载因子时（一般是1），会进行扩容的操作，一般是直接将 bucket 的大小扩为原来的两倍（gcc的实现，也有实现是按照素数表下一个素数来扩），再将所有元素进行rehash。
 
 - **注意**：unordered_set/map 是基于哈希表并通过拉链法来处理hash冲突问题，但不要误解为同一个 key 下可以取出多个值来，冲突处理是在说hash(key)相同的情况。key 和 value 仍是一一对应的。
+
+- 基于红黑树(RB-Tree)的 set 与 map 是可以使用 std::pair 的，而 unoredered_set 与unordered_map 的内部实现是基于哈希表(HashTable)，并没有直接提供 pair 接口，其原因与哈希表的特性相关。**需要自己构造 hash 过程**：
+
+  ```C++
+  // 哈希仿函数
+  struct pair_hash {
+    inline size_t operator()(const pair<int,int> & a) const { // 这个函数必须带有const属性
+        string temp = to_string(a.first) + "," + to_string(a.second);
+        std::hash<std::string> str_hash; // 这里借助现有的 string hash 函数
+        return str_hash(temp);
+    }
+  };
+  
+  unordered_set<pair<int, int>, pair_hash> pHash;
+  
+  // 原文链接：https://blog.csdn.net/zhaohaibo_/article/details/90340120
+  ```
 
 - 自定义hash函数：
   

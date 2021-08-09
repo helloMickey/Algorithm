@@ -1,5 +1,11 @@
 // https://leetcode-cn.com/problems/house-robber-iii/
 
+/*
+https://leetcode-cn.com/problems/house-robber-iii/solution/da-jia-jie-she-iii-by-leetcode-solution/
+
+题解给出的思路更为清晰 ！！！
+*/
+
 struct hashfunc { // 自定义key的hash，函数
 	template<typename T, typename U>
 	size_t operator()(const pair<T, U> &key) const {

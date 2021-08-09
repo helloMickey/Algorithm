@@ -1,6 +1,7 @@
 """
 https://leetcode-cn.com/problems/longest-palindromic-substring/
 
+方法1 ：动态规划
 dp[i][j] 表示 s[i]到s[j]之间的字符串为回文串
 
 if i > j:
@@ -9,6 +10,8 @@ if s[i] !=s[j]:
     dp[i][j] = False
 elif dp[i+1][j-1] == True:
     dp[i][j] = True 
+
+方法2： 基于回文中心的双指针扩展法~~
 """
 import numpy as np
 class Solution:

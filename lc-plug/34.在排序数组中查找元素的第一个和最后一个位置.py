@@ -4,6 +4,10 @@
 # [34] 在排序数组中查找元素的第一个和最后一个位置
 #
 
+# 思路二：
+# 利用二分思想先找其左边界，再找其右边界即可，
+# 注意找左边界的时候，由右侧逼近；找右边界的时候，由左侧逼近，即可。
+
 # @lc code=start
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:

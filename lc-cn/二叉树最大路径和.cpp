@@ -50,7 +50,7 @@ public:
         int rightGain = max(maxGain(node->right), 0);
 
         // 节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值
-        int priceNewpath = node->val + leftGain + rightGain;
+        int priceNewpath = node->val + leftGain + rightGain; // 因为路并非必须从上到下
 
         // 更新答案
         maxSum = max(maxSum, priceNewpath);
